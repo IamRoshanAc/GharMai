@@ -13,9 +13,10 @@ import org.springframework.core.annotation.Order;
 import java.util.List;
 import java.util.Optional;
 
-@DataJpaTest
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UserRepositoryTest {
+@DataJpaTest
+class GharmaiApplicationTests {
 
     @Autowired
     private UserRepo userRepo;
@@ -23,15 +24,14 @@ public class UserRepositoryTest {
 
     @Test
     @Order(1)
-    public void saveUserTest() {
+    void saveUserTest() {
 
-//        User User = new User();
-//        User.setFullname("rak");
 
         User user = User.builder()
-                .fullname("rak")
-                .email("a@g.com")
-                .password("1234")
+                .fullname("test")
+                .mobileNo("12345698")
+                .email("test@test.com")
+                .password("00000")
                 .build();
 
 
@@ -45,9 +45,10 @@ public class UserRepositoryTest {
     public void getUserTest() {
 
         User user = User.builder()
-                .fullname("rak")
-                .email("a@g.com")
-                .password("1234")
+                .fullname("test")
+                .mobileNo("12345698")
+                .email("test@test.com")
+                .password("00000")
                 .build();
 
 
@@ -63,11 +64,11 @@ public class UserRepositoryTest {
     @Order(3)
     public void getListOfUserTest(){
         User user = User.builder()
-                .fullname("rak")
-                .email("a@g.com")
-                .password("1234")
+                .fullname("test")
+                .mobileNo("12345698")
+                .email("test@test.com")
+                .password("00000")
                 .build();
-
 
         userRepo.save(user);
         List<User> User = userRepo.findAll();
@@ -80,9 +81,10 @@ public class UserRepositoryTest {
     public void updateUserTest(){
 
         User user = User.builder()
-                .fullname("rak")
-                .email("a@g.com")
-                .password("1234")
+                .fullname("test")
+                .mobileNo("12345698")
+                .email("test@test.com")
+                .password("00000")
                 .build();
 
 
@@ -103,11 +105,11 @@ public class UserRepositoryTest {
     public void deleteUserTest(){
 
         User user = User.builder()
-                .fullname("rak")
-                .email("a@g.com")
-                .password("1234")
+                .fullname("test")
+                .mobileNo("12345698")
+                .email("test@test.com")
+                .password("00000")
                 .build();
-
 
         userRepo.save(user);
 
@@ -126,4 +128,5 @@ public class UserRepositoryTest {
         Assertions.assertThat(user2).isNull();
 //        Assertions.assertThat(User1.getId()).isNull();
     }
+
 }

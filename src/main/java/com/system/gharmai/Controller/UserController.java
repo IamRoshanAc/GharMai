@@ -2,13 +2,9 @@ package com.system.gharmai.Controller;
 
 import com.system.gharmai.Pojo.UserPojo;
 import com.system.gharmai.Service.UserService;
-import com.system.gharmai.Pojo.UserPojo;
-import com.system.gharmai.Service.UserService;
 import com.system.gharmai.entity.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.mapping.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,6 +29,7 @@ public class UserController {
         return "about";
     }
 
+
     @GetMapping("/home")
     public String getHome(Model model, Principal principal) {
         model.addAttribute("userdata", userService.findByEmail(principal.getName()));
@@ -56,11 +53,7 @@ public class UserController {
         model.addAttribute("userdata", userService.findByEmail(principal.getName()));
         return "viewOrder";
     }
-    @GetMapping("/dashboard")
-    public String getDashboard(Model model, Principal principal) {
-        model.addAttribute("userdata", userService.findByEmail(principal.getName()));
-        return "dashboard";
-    }
+
     @GetMapping("/users")
     public String getUsers(Model model, Principal principal) {
         model.addAttribute("userdata", userService.findByEmail(principal.getName()));
@@ -100,17 +93,17 @@ public class UserController {
     @PostMapping("/save")
     public String saveUser(@Valid UserPojo userPojo){
         userService.saveUser(userPojo);
-        return "redirect:login";
+        return "redirect:/user/login";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication==null||authentication instanceof AnonymousAuthenticationToken){
-            return "login";
-        }
-        return "redirect:user/success";
-    }
+//    @GetMapping("/login")
+//    public String login() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication==null||authentication instanceof AnonymousAuthenticationToken){
+//            return "login";
+//        }
+//        return "redirect:user/success";
+//    }
     @GetMapping("/profile")
     public String profile() { return "profile";}
 
@@ -128,13 +121,20 @@ public class UserController {
     public String editUser(@PathVariable("id") Integer id, Model model) {
         User user = userService.fetchbyId(id);
         model.addAttribute("currentUser", new UserPojo(user));
-        return "redirect:/user/profile/{id}";
+        return "redirect:/profile/{id}";
     }
 
     @GetMapping("/{id}/delete")
     public String deleteProfile(@PathVariable("id") Integer id){
         userService.deleteById(id);
-        return "redirect:/user/create";
+        return "redirect:/logout";
+    }
+    @PostMapping("/logout")
+    public String logout(Authentication authentication) {
+        if (authentication.isAuthenticated()) {
+            SecurityContextHolder.clearContext();
+        }
+        return "redirect:/user/login";
     }
 //    @GetMapping("/{id}")
 //    public String deleteProfile(@PathVariable ("id") Integer id){

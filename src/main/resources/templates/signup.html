@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
     <title>Create Account</title>
-    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/login.css}">
-</head>
-<body>
-<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-    <div class="container">
-        <div class="card login-card">
-            <div class="row no-gutters">
-                <div class="col-md-5">
-                    <img th:src="@{~/img/Background.jpg}" alt="login" class="login-card-img">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <div class="brand-wrapper">
-                            <a th:href="@{/user/index}"> <img th:src="@{~/img/GharMai__3_-removebg-preview.png}"  alt="logo" class="logo"></a>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-                        </div>
-                        <p class="login-card-description">Sign into your account</p>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <link th:href="@{/css/style.css}"  rel="stylesheet">
+</head>
+
+<body>
+<!-- Nav Bar Start -->
+<div class="navbar navbar-expand-lg bg-light navbar-light">
+    <div class="container-fluid">
+        <a th:href="@{/user/index}" class="navbar-brand"><img th:src="@{~/img/GharMai__3_-removebg-preview.png}" alt="img"></a>
+
+    </div>
+</div>
+<!-- Nav Bar End -->
+
+
+<!-- Carousel Start -->
+<div class="carousel">
+    <div class="container-fluid">
+        <div class="owl-carousel">
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img th:src="@{~/img/carousel-3.jpg}" alt="Image">
+                </div>
+                <div class="carousel-text">
+                    <h1>Create<span>Your</span>Account</h1>
+                    <div class="carousel-btn">
                         <form th:method="post" th:action="@{/user/save}" th:object="${user}" class="needs-validation" novalidate="" autocomplete="off">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="fullname" placeholder="FullName" required th:field="*{fullname}">
@@ -46,22 +56,45 @@
                                 <label for="password" class="sr-only">Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" required th:field="*{password}">
                             </div>
-                            <input name="signup" id="signup" class="btn btn-block login-btn mb-4" type="submit"
-                                   value="SignUp">
+                            <input name="signup" id="signup"  class="btn custom-btn" type="submit" style="margin-left: 80px"
+                                   value="Create Account">
                         </form>
-                        <a href="#!" class="forgot-password-link">Forgot password?</a>
-                        <p class="login-card-footer-text">Already have an account? <a th:href="@{/user/login}"
-                                                                                    class="text-reset">login here</a>
+                        <a href="#!" class="forgot-password-link" style="margin-left: 100px">Forgot password?</a>
+                        <p class="login-card-footer-text">Already have an account? <a th:href="@{/login}"
+                                                                                      class="text-reset" >login here</a>
                         </p>
 
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
-</main>
+</div>
+<!-- Carousel End -->
+
+
+
+
+
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script th:href="@{/static/js/main.js}"></script>
 </body>
 </html>
